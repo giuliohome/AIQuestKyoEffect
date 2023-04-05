@@ -24,9 +24,22 @@ case class Step (
 )
 case class Recipe(name: String, steps: List[Step])
 
+val quest = Quests.select[Recipe]("Italian recipe")
 
-object Hello {
-  def main(args: Array[String]): Unit  = {
+object Hello extends KyoApp {
+  def run(args: List[String])  = {
+    
+    Requests.run {
+      AIs.run {
+        AIs.init { ai =>
+          Quests.run(ai)(quest) { r =>
+            Consoles.println(ai.dump(_ + "\n" + r))
+          }.unit
+        }
+      }
+    }
+
+    /*
     val logger = LoggerFactory.getLogger(classOf[KyoApp])
     val quest = Quests.select[Recipe]("Italian recipe")
     val rn = Quests.run(quest)
@@ -39,7 +52,7 @@ object Hello {
     val bl:(Recipe > IOs) = fb.block
     val res:Recipe = IOs.run(bl)
     println(s"recipe is  ${res} !")
-
+    */
 
     //logger.info(s"$quest")
     /*val rn = Quests.run(quest)
