@@ -24,7 +24,7 @@ case class Step (
 )
 case class Recipe(name: String, steps: List[Step])
 
-val quest = Quests.select[Recipe]("Italian recipe")
+val quest = Quests.select[Recipe]("Recipe for sea bass")
 
 object Hello extends KyoApp {
   def run(args: List[String])  = {
@@ -39,28 +39,6 @@ object Hello extends KyoApp {
       }
     }
 
-    /*
-    val logger = LoggerFactory.getLogger(classOf[KyoApp])
-    val quest = Quests.select[Recipe]("Italian recipe")
-    val rn = Quests.run(quest)
-    val ai = AIs.run(rn) 
-    val rq = Requests.run(ai)
-    val io = Fibers.forkFiber(rq)
-    val fb:Fiber[Recipe] = IOs.run(io) 
-
-    //Fibers.run(fb.join(f => logger.info(f.name)))
-    val bl:(Recipe > IOs) = fb.block
-    val res:Recipe = IOs.run(bl)
-    println(s"recipe is  ${res} !")
-    */
-
-    //logger.info(s"$quest")
-    /*val rn = Quests.run(quest)
-    val ar = AIs.run(rn) 
-    val rr = Requests.run(ar)
-    val fb = Fibers.run(x => rr(x))
-    val io = IOs.run(fb)
-    val app =  KyoApp.run(Duration.Inf)(io) */
   }
 }
 
