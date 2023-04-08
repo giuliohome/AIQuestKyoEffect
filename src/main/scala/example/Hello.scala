@@ -24,7 +24,7 @@ case class Step (
 )
 case class Recipe(name: String, steps: List[Step])
 
-val quest = Quests.select[Recipe]("Recipe for sea bass")
+val quest = Quests.select[Recipe]("Recipe for sea bass en papillote")
 
 object Hello extends KyoApp {
   def run(args: List[String])  = {
